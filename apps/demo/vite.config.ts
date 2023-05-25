@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
+import istanbul from 'vite-plugin-istanbul';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
@@ -21,8 +22,15 @@ export default defineConfig({
     viteTsConfigPaths({
       root: '../../',
     }),
+    istanbul({
+      cypress: true,
+      requireEnv: false,
+    }),
   ],
 
+  build: {
+    sourcemap: 'hidden',
+  },
   // Uncomment this if you are using workers.
   // worker: {
   //  plugins: [
